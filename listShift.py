@@ -2,9 +2,12 @@ class Solution(object):
     def rotate(self, nums, k):
         if(k ==0):
             return nums
+        inflection = len(nums)-k
+        nums[:] = nums[inflection:]+nums[:inflection]
         
-        inflection = k % len(nums)
-        a = k % len(nums)
-
-        nums[:] = nums[-a:]+nums[:-a]
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
         
