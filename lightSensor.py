@@ -26,19 +26,25 @@ example_three = [40,50,100,80, 90, 110, 20, 30,40,50,60,50,40,50,40,200,210,215,
 
 
 def light_period(measurements):
-  smallStack = list()
-  smallStack.append(measurements[0])
-  largeStack = list()  
-  for light in range(1,len(measurements)):
-    temp = measurements[light]
-    smallie = smallStack[-1]
-    if( len(str(temp)) <= len(str(smallie))):
-      smallStack.append(temp)
-      if(len(largeStack ) ==1):
-        largeStack.pop()
-    elif(len(str(temp)) > len(str(smallie)) ):
-      largeStack.append(temp)
-  return largeStack
+  sumTotal = measurements[0]
+  avgStack = [sumTotal] 
+  avg = sumTotal
+  ms_Stack = list()
+  roomDimness = len(str(measurements[0]))
   
- 
-print(len(light_period(example_three)))
+  for light in range(1,len(measurements)):
+     
+      temp = measurements[light]
+      sumTotal+=temp
+      avg = sumTotal / (light+1)
+      avgStack.append(avg)
+      if( len(str(measurements[light])) != len(str(measurements[light-1])) and len(ms_Stack) == 1):
+        ms_Stack.pop()
+
+      elif(avgStack[light-1]+1 < avgStack[light] and len(str(measurements[light])) > roomDimness):
+        ms_Stack.append(measurements[light])
+
+  return ms_Stack
+
+print(len(light_period(example_two)))
+      
