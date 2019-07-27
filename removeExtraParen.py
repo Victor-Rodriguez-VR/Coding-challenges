@@ -1,22 +1,22 @@
 def removeOuterParentheses(string):
-    # Creation of left-paren-only stack.
-    leftStack = []
-    # contains the valid parenthesis.
+    # Start and end are used to slice the inner part of a paren.
+    start = None
+    end = None
+    leftstack = []
     validParen = ""
-    for character in string:
-
-        if(len(leftStack) >= 1):
-            if(character == "("):
-                leftStack.append(character)
-                
-                validParen+= character
-            elif(character == ")"):
-                if(len(leftStack) == 1):
-                    leftStack.pop()
-                    continue
-                leftStack.pop()
-                # adds the character into validParen.
-                validParen+= ")"
-        else:
-            leftStack.append(character)
+    for character in range(len(string)):
+        if(string[character] == "("):
+            if(len(leftstack) == 0):
+                start = character
+            leftstack.append(string[character])
+        elif(string[character] == ")"):
+            if(len(leftstack) == 1):
+                end = character
+            leftstack.pop()
+        if(start!= None and end != None):
+            # concatonates the inner-parts of the paren to the string.
+            validParen+= string[start+1:end]
+            # Resets the limits of the slice.
+            start = None
+            end = None
     return validParen
