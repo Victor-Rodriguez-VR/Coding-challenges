@@ -27,6 +27,7 @@ def log_stats(logs):
     description = log[start:end]
     # find the actual error msg the [1:] ignores some whitespace
     error = log.split(":")[1][1:]
+    # Following IF's determine if all parts of the log are keys.
     if(stats.get(catagory)):
       if(stats[catagory].get(code)):
         if(stats[catagory][code].get(description)):
