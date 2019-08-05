@@ -1,12 +1,15 @@
 def bigram_frequency_analyzer(text):
+    # Ignores the last character if it is empty.
+    if(text[-1] == " "):
+        text = text[:len(text)-1]
     theDict = dict()
     # Seperates words from one another.
     indivisualWords = text.split(" ")
     # Since we want 2 words, we increment by two.
-    for words in range(2,len(indivisualWords),1):
+    for index in range(2,len(indivisualWords),1):
         # The past two words.
-        twoWords = indivisualWords[words-2] + " " + indivisualWords[words-1]
-        currentWord = indivisualWords[words]
+        twoWords = indivisualWords[index-2] + " " + indivisualWords[index-1]
+        currentWord = indivisualWords[index]
         # Determines if the two words are within the dictionary. Incriments the key's value, or creates a value for the key.
         if(theDict.get(twoWords)):
             if(theDict[twoWords].get(currentWord)):
