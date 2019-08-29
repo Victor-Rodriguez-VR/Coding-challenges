@@ -1,3 +1,4 @@
+# Test!!
 def compressSquareImage(image, size):
   # declare final output string number
   size = str(size)
