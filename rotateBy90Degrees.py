@@ -15,25 +15,22 @@
 #]
 
 
-
-import math
-def rotate_list(matrix):
-        size = len(matrix)
+class Solution(object):
+    def rotate(self, matrix):
+        size = len(matrix[0])
         # Since you technically move 2 numbers on a side, we divide the work in half :)
         for coordX in range(int(size/2)):
-                for coordY in range(coordX, size-coordX-1):
-                        temp = matrix[coordX][coordY]
-                        # Top-left copies bottom left's value.
-                        matrix[coordX][coordY] = matrix[size-1-coordY][coordX]
-                        # Bottom-left copies bottom right's value.
-                        matrix[size-1-coordY][coordX] = matrix[size-1-coordX][size-1-coordY]
-                        # Bottom-right copies top-right's value.
-                        matrix[size-1-coordX][size-1-coordY] = matrix[coordY][size-1-coordX]
-                        # Top-right copies top-left's value, which we overwrote. This is where temp is useful.
-                        matrix[coordY][size-1-coordX] = temp
-                # Returns the newly rotated matrix.
-                return matrix
+            for coordY in range(coordX, size-coordX-1):
+                temp = matrix[coordX][coordY]
+                # Top-left copies bottom left's value.
+                matrix[coordX][coordY] = matrix[size-coordY-1][coordX]
+                # Bottom-left copies bottom right's value.
+                matrix[size-1-coordY][coordX] = matrix[size-1-coordX][size-1-coordY]
+                # Bottom-right copies top-right's value.
+                matrix[size-1-coordX][size-1-coordY] = matrix[coordY][size-1-coordX]
+                # Top-right copies top-left's value, which we overwrote. This is where temp is useful.
+                matrix[coordY][size-1-coordX] = temp
 
-
-
+        
+        
 
