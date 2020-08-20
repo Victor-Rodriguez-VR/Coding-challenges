@@ -1,18 +1,15 @@
 class Solution(object):
     def containsDuplicate(self, nums):
-        # Initiates a no-duplicate environment
-        trueNumbers = set()
-        for number in nums:
-            # If found a duplicate within trueNumbers, immidiately returns true.
-            if number in trueNumbers:
-                return True
-            # Otherwise adds the number to trueNumbers.
-            else:
-                trueNumbers.add(number)
-        # If no duplicate was found, returns false.
-        return False
+        trueNumbers = set(nums) # Creates a set from the given list. Sets by nature have no duplicates.
+        if(len(trueNumbers) == len(nums)): # If a set and the given list have the same size - that means no duplicates were excluded from the list to set conversion.
+            return False # Aka no duplicates.
+        return True # Otherwise returns true.
         
         """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        
         :type nums: List[int]
         :rtype: bool
         """
